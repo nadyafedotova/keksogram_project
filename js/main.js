@@ -85,4 +85,3 @@ function createRandomGenerator (min, max) {
 }
 
 const data = new Array(countObjects).fill(countObjects).map((e, index) => getOffer(index))
-console.log(data)
