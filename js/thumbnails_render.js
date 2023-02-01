@@ -1,5 +1,5 @@
 const pictures = document.querySelector('.pictures')
-const pictureTemplate  = document.getElementById("picture");
+const pictureTemplate  = document.getElementById('picture');
 const fragment = new DocumentFragment();
 
 function thumbnails_render(data) {
