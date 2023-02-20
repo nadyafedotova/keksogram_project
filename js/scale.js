@@ -49,7 +49,5 @@ export const addClickZoomButton = () => {
     scaleBiggerButtonElement.addEventListener('click', getZoomInClick);
 };
 
-export { defaultScale, scaleSmallerButtonElement, scaleBiggerButtonElement, scaleValueInputElement, SliderValue };
-
 
 
