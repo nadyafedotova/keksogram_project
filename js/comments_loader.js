@@ -9,6 +9,7 @@ const fragment = new DocumentFragment();
 
 const getComments = (comments, load) => {
     socialComments.innerHTML = '';
+    let commentsData;
     let commentsCountCurrent = bigPicture.querySelector('.comments-count-current');
     let commentsCountCurrentValue = COUNT_DEFAULT_COMMENTS;
 
@@ -20,7 +21,7 @@ const getComments = (comments, load) => {
             commentLoader.style.display = 'none';
         }
 
-        let commentsData = comments.length > COUNT_DEFAULT_COMMENTS ? comments.slice(commentsCountCurrentValue - COUNT_DEFAULT_COMMENTS) : comments;
+        commentsData = comments.length > COUNT_DEFAULT_COMMENTS ? comments.slice(commentsCountCurrentValue - COUNT_DEFAULT_COMMENTS) : comments;
         if (load && commentsData.length < COUNT_DEFAULT_COMMENTS) {
             commentsCountCurrentValue += commentsData.length - COUNT_DEFAULT_COMMENTS;
             commentLoader.style.display = 'none';
@@ -37,8 +38,6 @@ const getComments = (comments, load) => {
 
     for (let i = 0; i < comments.length; i++) {
         if (!load && i >= COUNT_DEFAULT_COMMENTS) {
-            break;
-        } else if (load && i >= COUNT_DEFAULT_COMMENTS) {
             break;
         } else if (load && i > COUNT_DEFAULT_COMMENTS) {
             continue;
