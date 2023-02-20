@@ -5,6 +5,7 @@ const body = document.querySelector('body');
 const pictureCancelPopup = document.querySelector('#picture-cancel');
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
+const socialComments = document.querySelector('.social__comments');
 const socialCaption = document.querySelector('.social__caption');
 const commentsCount = document.querySelector('.comments-count');
 const likesCount = bigPicture.querySelector('.likes-count');
@@ -36,6 +37,7 @@ function closePopupPhoto () {
 }
 
 function thumbnailsFullScreen (data) {
+    socialComments.innerHTML = '';
     bigPicture.classList.remove('hidden');
     body.classList.add('modal-open');
 

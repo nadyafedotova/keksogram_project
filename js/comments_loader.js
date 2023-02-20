@@ -8,7 +8,6 @@ const bigPicture = document.querySelector('.big-picture');
 const fragment = new DocumentFragment();
 
 const getComments = (comments, load) => {
-    socialComments.innerHTML = '';
     let commentsData;
     let commentsCountCurrent = bigPicture.querySelector('.comments-count-current');
     let commentsCountCurrentValue = COUNT_DEFAULT_COMMENTS;
@@ -38,6 +37,8 @@ const getComments = (comments, load) => {
 
     for (let i = 0; i < comments.length; i++) {
         if (!load && i >= COUNT_DEFAULT_COMMENTS) {
+            break;
+        } else if (load && i >= COUNT_DEFAULT_COMMENTS) {
             break;
         } else if (load && i > COUNT_DEFAULT_COMMENTS) {
             continue;
