@@ -33,7 +33,6 @@ const closeUploadForm = () => {
     document.removeEventListener('keydown', onFormEscKeydown);
     imgUploadOverlay.classList.add('hidden');
     body.classList.remove('modal-open');
-    uploadFile.reset();
 };
 
 uploadFile.addEventListener('change', openUploadForm);

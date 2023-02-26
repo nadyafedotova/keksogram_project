@@ -37,7 +37,7 @@ const getZoomOutClick = () => {
 };
 
 const getZoomInClick = () => {
-    if (step < defaultScale) {
+    if (step <= defaultScale && defaultScale < 100) {
         defaultScale += step;
         scaleValueInputElement.value = `${defaultScale}%`;
         previewPhotoElement.style.transform = `scale(${defaultScale / 100})`;

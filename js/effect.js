@@ -69,6 +69,8 @@ const photoEffects = {
 
 export const resetPhotoEffects = () => {
     effectLevelValueElement.value = '';
+    uploadPhotoElement.className = '';
+    uploadPhotoElement.style.filter = '';
     effectSliderContainerElement.classList.add('hidden');
     effectSliderElement.setAttribute('disabled', true);
 };
