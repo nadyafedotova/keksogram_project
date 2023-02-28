@@ -7,7 +7,7 @@ function thumbnails_render (data) {
         const pictureElement = pictureTemplate.content.cloneNode(true);
         pictureElement.querySelector('.picture__img').src = photo.url;
         pictureElement.querySelector('.picture__img').dataset.id = photo.id;
-        pictureElement.querySelector('.picture__comments').textContent = photo.comments.length;
+        pictureElement.querySelector('.picture__comments').textContent = photo.comments ? photo.comments.length : 0;
         pictureElement.querySelector('.picture__likes').textContent = photo.likes;
         fragment.appendChild(pictureElement);
     });

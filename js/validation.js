@@ -2,7 +2,7 @@ import { onFormEscKeydown, hashtagInput, comment } from './form.js';
 
 const MAX_HASHTAG_SYMBOLS = 20;
 const MAX_HASHTAGS = 5;
-const regex = new RegExp("^#.*[^A-zА-яЁё0-9#].*$");
+const regex = new RegExp('^#.*[^A-zА-яЁё0-9#].*$');
 
 comment.addEventListener('focus', () => document.removeEventListener('keydown', onFormEscKeydown));
 comment.addEventListener('blur', () => document.addEventListener('keydown', onFormEscKeydown));

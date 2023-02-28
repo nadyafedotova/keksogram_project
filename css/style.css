@@ -1457,3 +1457,9 @@ main {
 .hidden {
   display: none;
 }
+
+.img-message__cancel {
+  position: absolute;
+  top: 0;
+  right: 2px;
+}

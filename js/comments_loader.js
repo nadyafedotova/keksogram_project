@@ -1,4 +1,4 @@
-import { comment_render } from './thumbnails_full_screen.js'
+import { comment_render } from './thumbnails_full_screen.js';
 
 const COUNT_DEFAULT_COMMENTS = 5;
 const socialCommentsCount = document.querySelector('.social__comment-count');
@@ -27,10 +27,11 @@ const getComments = (comments, load) => {
         }
     }
 
-    socialCommentsCountInnerHTML(commentsCountCurrentValue, comments.length)
-    if (!load && comments.length <= COUNT_DEFAULT_COMMENTS) {
+    const commentsLength = comments ? comments.length : 0;
+    socialCommentsCountInnerHTML(commentsCountCurrentValue, commentsLength)
+    if (!load && commentsLength <= COUNT_DEFAULT_COMMENTS) {
         commentLoader.style.display = 'none';
-        socialCommentsCount.innerHTML = lessFiveComments(comments.length);
+        socialCommentsCount.innerHTML = lessFiveComments(commentsLength);
     }
 
     comments = commentsData ?? comments
@@ -47,7 +48,6 @@ const getComments = (comments, load) => {
     }
 
     return socialComments.appendChild(fragment);
-
 };
 
 const lessFiveComments = (commentsLength) => {

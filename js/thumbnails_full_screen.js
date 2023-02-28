@@ -1,5 +1,5 @@
 import { onEscapeKey } from './utils.js';
-import { getComments } from './comments_loader.js'
+import { getComments } from './comments_loader.js';
 
 const body = document.querySelector('body');
 const pictureCancelPopup = document.querySelector('#picture-cancel');
@@ -22,7 +22,7 @@ function comment_render (element) {
     return fragment;
 }
 
-const closePopup = (evt) => {
+export const closePopup = (evt) => {
     if (onEscapeKey(evt)) {
         evt.preventDefault();
         closePopupPhoto();
@@ -42,7 +42,7 @@ function thumbnailsFullScreen (data) {
     body.classList.add('modal-open');
 
     bigPictureImg.src = data.url;
-    commentsCount.textContent = data.comments.length;
+    commentsCount.textContent = data.comments ? data.comments.length : 0;
     likesCount.textContent = data.likes;
     socialCaption.textContent = data.description;
     getComments(data.comments)

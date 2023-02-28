@@ -2,9 +2,10 @@ import { apiPosts } from './api.js';
 import { thumbnailsFullScreen } from './thumbnails_full_screen.js';
 import './form.js';
 import './validation.js';
-import { applyPhotoEffects } from './effect.js'
+import { applyPhotoEffects } from './effect.js';
 
 const data = apiPosts;
+export const idLast = data[0].length
 
 applyPhotoEffects();
 
