@@ -1,4 +1,4 @@
-import { effectSliderElement } from './effect.js'
+import { effectSliderElement } from './effect.js';
 
 const previewPhotoElement = document.querySelector('.img-upload__preview');
 const scaleSmallerButtonElement = document.querySelector('.scale__control--smaller');

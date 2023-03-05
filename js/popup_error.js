@@ -1,34 +1,80 @@
-const popupErrorContainer = document.createElement('div');
-const popupErrorButton = document.createElement('p');
+import { body } from './thumbnails_full_screen.js';
+import { onEscapeKey } from './utils.js';
+import { closeUploadForm } from './form.js';
 
-const popupError = (message) => {
-    popupErrorContainer.style.zIndex = '100';
-    popupErrorContainer.style.width = '500px';
-    popupErrorContainer.style.borderRadius = '15px';
-    popupErrorContainer.style.position = 'absolute';
-    popupErrorContainer.style.left = '36%';
-    popupErrorContainer.style.right = '36%';
-    popupErrorContainer.style.top = '30%';
-    popupErrorContainer.style.padding = '30px';
-    popupErrorContainer.style.fontSize = '18px';
-    popupErrorContainer.style.color = '#24272e';
-    popupErrorContainer.style.backgroundColor = '#979fb0';
-    popupErrorContainer.style.textAlign = 'center';
-    popupErrorContainer.lineHeight = '1.5';
+const errorMessageTemplateElement = document.querySelector('#error').content.querySelector('.error');
+const errorMessageElement = errorMessageTemplateElement.cloneNode(true);
+const errorButtonElement = errorMessageElement.querySelector('.error__button');
 
-    popupErrorButton.style.backgroundColor = '#497be6';
-    popupErrorButton.style.borderRadius = '15px';
-    popupErrorButton.style.padding = '15px';
-    popupErrorButton.style.width = '300px';
-    popupErrorButton.style.margin = '15px auto 10px ';
-    popupErrorButton.style.cursor = 'pointer';
+const successMessageTemplateElement = document.querySelector('#success').content.querySelector('.success');
+const successMessageElement = successMessageTemplateElement.cloneNode(true);
+const successButtonElement = successMessageElement.querySelector('.success__button');
 
-    popupErrorContainer.textContent = message;
-    popupErrorButton.textContent = 'Перезавантажити';
-    document.body.append(popupErrorContainer);
-    popupErrorContainer.append(popupErrorButton);
+
+const errorMessageShow = () => {
+    body.classList.add('modal-open');
+    body.append(errorMessageElement);
+    errorMessageElement.style.zIndex = '100';
+    document.addEventListener('keydown', onErrorMessageEscClose);
+    document.addEventListener('click', onErrorMessageAnyClickClose);
+};
+
+const errorMessageClose = () => {
+    body.classList.remove('modal-open');
+    errorMessageElement.remove();
+    document.removeEventListener('keydown', onErrorMessageEscClose);
+    document.removeEventListener('click', onErrorMessageAnyClickClose);
+};
+
+errorButtonElement.addEventListener('click', () => errorMessageClose());
+
+const onErrorMessageEscClose = (evt) => {
+    if (onEscapeKey(evt)) {
+        evt.preventDefault();
+        errorMessageClose();
+    }
 }
 
-popupErrorButton.onclick = () => location.reload()
+const onErrorMessageAnyClickClose = (evt) => {
+    if (evt.target === errorMessageElement) errorMessageClose()
+};
 
-export { popupError };
+const successMessageShow = () => {
+    body.classList.add('modal-open');
+    body.append(successMessageElement);
+    document.addEventListener('keydown', onSuccessMessageEscClose);
+    document.addEventListener('click', onSuccessMessageAnyClickClose);
+};
+
+const successMessageClose = () => {
+    body.classList.remove('modal-open');
+    successMessageElement.remove();
+    document.removeEventListener('keydown', onSuccessMessageEscClose);
+    document.removeEventListener('click', onSuccessMessageAnyClickClose);
+};
+
+successButtonElement.addEventListener('click', () => {
+    successMessageClose();
+    location.reload();
+});
+
+const onSuccessMessageEscClose = (evt) => {
+    if (onEscapeKey(evt)) {
+        evt.preventDefault();
+        successMessageClose();
+    }
+}
+
+const onSuccessMessageAnyClickClose = (evt) => {
+    if (evt.target === successMessageElement) successMessageClose();
+}
+
+export const uploadFormSuccessSubmit = () => {
+    closeUploadForm();
+    successMessageShow();
+};
+
+export const uploadFormErrorSubmit = () => {
+    closeUploadForm();
+    errorMessageShow();
+};
