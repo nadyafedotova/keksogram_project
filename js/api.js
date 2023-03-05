@@ -1,5 +1,5 @@
 import { thumbnails_render } from './thumbnails_render.js';
-import { popupError } from './popup_error.js';
+import { uploadFormErrorSubmit, uploadFormSuccessSubmit } from './popup_error.js';
 import { setRemoveAttribute } from './form.js';
 
 const statusBadReq = 400;
@@ -10,13 +10,10 @@ const urls = [
 ];
 let dataPhotos;
 let dataComments;
-const errUploadMessage = 'Не вдалося завантажити дані.';
-const successSendMessage = 'Дані благополучно відправлені.';
-const errSendMessage = 'Не вдалося відправити дані. Будь ласка спробуйте ще раз';
 
 const apiPosts = await Promise.all(urls.map(async url => {
     const response = await fetch(url);
-    if (response.status === statusBadReq) popupError(errUploadMessage);
+    if (response.status === statusBadReq) uploadFormSuccessSubmit();
     switch (url) {
         case urls[0]:
             dataPhotos = await response.json();
@@ -34,9 +31,9 @@ const apiSendData = async (data) => {
     });
 
     if (response.ok) {
-        popupError(successSendMessage);
+        uploadFormSuccessSubmit();
     } else {
-        popupError(errSendMessage);
+        uploadFormErrorSubmit();
     }
     setRemoveAttribute();
 };

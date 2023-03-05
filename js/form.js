@@ -43,10 +43,11 @@ const openUploadForm = () => {
     resetPhotoEffects();
 };
 
-const closeUploadForm = () => {
+export const closeUploadForm = () => {
     document.removeEventListener('keydown', onFormEscKeydown);
     imgUploadOverlay.classList.add('hidden');
     body.classList.remove('modal-open');
+    formUpload.reset();
 };
 
 uploadedImage.addEventListener('change', (evt) => {
@@ -55,7 +56,7 @@ uploadedImage.addEventListener('change', (evt) => {
         throw new Error('Зчитувач файлів недоступен');
     }
     if (!target.files.length) {
-        throw new Error('Нічего не завантажено');
+        throw new Error('Нічого не завантажено');
     }
     const fileReader = new FileReader();
     fileReader.addEventListener('load', () => loadImageToUpload(uploadPreviewElement, fileReader, effectsImagesList));
