@@ -1,6 +1,7 @@
 import { thumbnails_render } from './thumbnails_render.js';
 import { uploadFormErrorSubmit, uploadFormSuccessSubmit } from './popup_error.js';
 import { setRemoveAttribute } from './form.js';
+import { filters } from './filter.js'
 
 const statusBadReq = 400;
 const urls = [
@@ -18,6 +19,7 @@ const apiPosts = await Promise.all(urls.map(async url => {
         case urls[0]:
             dataPhotos = await response.json();
             thumbnails_render(dataPhotos);
+            filters(dataPhotos);
             return dataPhotos;
         case urls[1]:
             return dataComments = await response.json();
